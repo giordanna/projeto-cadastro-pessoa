@@ -1,6 +1,6 @@
 # Projeto Cadastro Pessoa
 
-Este projeto foi criado com o [Angular CLI](https://github.com/angular/angular-cli) versão 6.2.3.
+Este projeto foi criado com o [Angular CLI](https://github.com/angular/angular-cli) versão 7.0.4.
 
 ## Escopo
 
@@ -16,8 +16,8 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 - Criar um design básico para páginas (pode ser utilizado o bibliotecas/frameworks como bootstrap ou material-UI design disponíveis no repositório do npm)
 
 ## Tecnologias
-- Angular CLI 6.2.3
-- Bootstrap 3.3.7
+- Angular CLI 7.0.4
+- Bootstrap 4.1.3
 - Node.js 10.13
 
 ## Como executar
