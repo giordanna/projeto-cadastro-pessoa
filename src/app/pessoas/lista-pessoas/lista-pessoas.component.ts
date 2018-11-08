@@ -26,6 +26,24 @@ export class ListaPessoasComponent implements OnInit {
       '123qwe',
       true
     ),
+    new PessoaModule(
+      3,
+      'Nome 3',
+      'nome2@email.com',
+      36,
+      'nome3',
+      '123qwe',
+      false
+    ),
+    new PessoaModule(
+      4,
+      'Nome 4',
+      'nome4@email.com',
+      45,
+      'nome4',
+      '123qwe',
+      false
+    ),
   ];
   constructor() { }
 

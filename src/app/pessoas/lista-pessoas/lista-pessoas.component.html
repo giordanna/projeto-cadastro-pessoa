@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-xs-10">
-    <ul class="list-group">
-      <h4 class="list-group-item active">Lista de pessoas</h4>
-      <a
-        class="list-group-item"
-        style="cursor: pointer;"
-        *ngFor="let pessoa of pessoas"
-      >
-        {{ pessoa.nome }} (Username: {{ pessoa.login }})
-      </a>
-    </ul>
-  </div>
+    <h3>Pessoas cadastradas</h3>
+    <div class="col-sm-6" style="cursor: pointer;"
+         *ngFor="let pessoa of pessoas">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{ pessoa.nome }}
+        </div>
+        <div class="panel-body">
+           {{ pessoa.login }}
+        </div>
+      </div>
+    </div>
 </div>
