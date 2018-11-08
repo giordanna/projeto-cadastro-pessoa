@@ -1,3 +1,41 @@
-<p>
-  pessoa-detalhes works!
-</p>
+<h4 class="list-group-item active">Detalhes da pessoa</h4>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    ID
+  </h4>
+  <p class="list-group-item-text">
+    {{pessoa.id}}
+  </p>
+</div>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    Nome
+  </h4>
+  <p class="list-group-item-text">
+    {{pessoa.nome}}
+  </p>
+</div>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    Email
+  </h4>
+  <p class="list-group-item-text">
+    {{pessoa.email}}
+  </p>
+</div>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    Login
+  </h4>
+  <p class="list-group-item-text">
+    {{pessoa.login}}
+  </p>
+</div>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    Status
+  </h4>
+  <p class="list-group-item-text">
+    {{pessoa.status ? "Online" : "Offline"}}
+  </p>
+</div>
