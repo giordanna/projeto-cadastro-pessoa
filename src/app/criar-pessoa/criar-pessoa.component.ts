@@ -34,7 +34,7 @@ export class CriarPessoaComponent implements OnInit {
 
   onAdicionarPessoa() {
     this.api.createPessoa(this.form.value).subscribe((result) => {
-      this.router.navigate(['/lista']);
+      this.router.navigate(['/lista'], { queryParams: { add: true } });
     }, (err) => {
       console.log(err);
     });
