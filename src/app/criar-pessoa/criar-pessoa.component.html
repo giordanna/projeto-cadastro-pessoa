@@ -2,51 +2,53 @@
   <div class="col-xs-12">
     <form>
       <div class="row">
-        <div class="col-xs-5 form-group">
+        <div class="col-sm-5 form-group">
           <label for="nome">
             Nome
           </label>
-          <input type="text" name="nome" id="nome" class="form-control" [(ngModel)]="novaPessoaNome" required />
+          <input type="text" name="nome" id="nome" class="form-control" [(ngModel)]="novaPessoa.nome" required />
         </div>
         <div class="col-sm-5 form-group">
           <label for="idade">
             Idade
           </label>
-          <input type="number" name="idade" id="idade" class="form-control" [(ngModel)]="novaPessoaIdade" required />
+          <input type="number" name="idade" id="idade" class="form-control" [(ngModel)]="novaPessoa.idade" required />
         </div>
         <div class="col-sm-5 form-group">
           <label for="email">
             Email
           </label>
-          <input type="email" name="email" id="email" class="form-control" [(ngModel)]="novaPessoaEmail" required />
+          <input type="email" name="email" id="email" class="form-control" [(ngModel)]="novaPessoa.email" required />
         </div>
+      </div>
+      <div class="row">
         <div class="col-sm-5 form-group">
           <label for="login">
             Login
           </label>
-          <input type="text" name="login" id="login" class="form-control" [(ngModel)]="novaPessoaLogin" required />
+          <input type="text" name="login" id="login" class="form-control" [(ngModel)]="novaPessoa.login" required />
         </div>
         <div class="col-sm-5 form-group">
           <label for="senha">
             Senha
           </label>
-          <input type="password" name="senha" id="senha" class="form-control" [(ngModel)]="novaPessoaSenha" required />
+          <input type="password" name="senha" id="senha" class="form-control" [(ngModel)]="novaPessoa.senha" required />
         </div>
         <div class="col-sm-5 form-group">
           <label for="status">
             Status:
           </label>
-          <label class="radio-inline">
-            <input type="radio" id="status" name="status" [value]="1" [(ngModel)]="novaPessoaStatus">Online
-          </label>
-          <label class="radio-inline">
-            <input type="radio" id="status" name="status" [(ngModel)]="novaPessoaStatus" checked>Offline
-          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <input type="checkbox" class="form-check-input" id="status" name="status" [value]="1" [(ngModel)]="novaPessoa.status">
+          <label class="form-check-label" for="status">&emsp;Ativo</label>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="button">Adicionar pessoa</button>
+          <button class="btn btn-success" type="button" (click)="onAdicionarPessoa()">Adicionar pessoa</button>
         </div>
       </div>
     </form>

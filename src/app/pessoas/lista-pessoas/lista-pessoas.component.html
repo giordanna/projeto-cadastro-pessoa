@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-10">
     <h3>Pessoas cadastradas</h3>
-    <div class="col-sm-6" style="cursor: pointer;"
+    <a class="col-sm-6 link-sem-estilo" routerLink="/lista/{{ pessoa.id }}"
          *ngFor="let pessoa of pessoas">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -11,5 +11,5 @@
            {{ pessoa.login }}
         </div>
       </div>
-    </div>
+    </a>
 </div>

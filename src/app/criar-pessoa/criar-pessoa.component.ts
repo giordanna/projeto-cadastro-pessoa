@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-criar-pessoa',
@@ -6,17 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./criar-pessoa.component.css']
 })
 export class CriarPessoaComponent implements OnInit {
+  novaPessoa: {} = {
+    nome: 'Fulano de Tal',
+    idade: '29',
+    email: 'fulano@exemplo.com',
+    login: 'fulano.29',
+    senha: '123qwe',
+    status: false
+  };
 
-  novaPessoaNome: string = 'Fulano';
-  novaPessoaIdade: number = 29;
-  novaPessoaEmail: string = 'fulano@exemplo.com';
-  novaPessoaLogin: string = 'fulano.29';
-  novaPessoaSenha: string = '123qwe';
-  novaPessoaStatus: boolean = false;
-
-  constructor() { }
+  constructor(public api: ApiService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onAdicionarPessoa() {
+    this.api.createPessoa(this.novaPessoa).subscribe((result) => {
+      this.router.navigate(['/lista']);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }

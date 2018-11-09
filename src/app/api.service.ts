@@ -33,7 +33,8 @@ export class ApiService {
       console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      // return of(result as T);
+      return of(error as T);
     };
   }
 
@@ -50,13 +51,20 @@ export class ApiService {
   }
 
   // API: POST /pessoas
-  public createPessoa(pessoa: PessoaModule) {
+  public createPessoa(pessoa: {}) {
     // will use this.http.post()
+    return this.http.post<any>(API_URL + '/pessoas', JSON.stringify(pessoa), httpOptions).pipe(
+      catchError(this.handleError<any>('createPessoa'))
+    );
   }
 
   // API: GET /pessoas/:id
-  public getPessoaById(pessoaId: number) {
+  public getPessoaById(pessoaId: number): Observable<PessoaModule> {
     // will use this.http.get()
+      return this.http.get(API_URL + '/pessoas/' + pessoaId).pipe(
+        map(this.extrairDados),
+        catchError(this.handleError<any>('getPessoaById'))
+      );
   }
 
   // API: PUT /pessoas/:id

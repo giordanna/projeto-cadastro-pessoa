@@ -3,15 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { CriarPessoaComponent } from './criar-pessoa/criar-pessoa.component';
 import { PessoasComponent } from './pessoas/pessoas.component';
 import { ErroComponent } from './erro/erro.component';
+import {PessoaDetalhesComponent} from './pessoas/pessoa-detalhes/pessoa-detalhes.component';
 
 const routes: Routes = [
   { path: 'criar', component: CriarPessoaComponent },
-  { path: 'lista', component: PessoasComponent },
+  { path: 'lista', children: [
+      { path: '', component: PessoasComponent },
+      { path: ':id', component: PessoasComponent }
+    ]
+  },
   { path: '',
-    redirectTo: '/lista',
+    redirectTo: '/criar',
     pathMatch: 'full'
   },
-  { path: '**', component: ErroComponent }
+  { path: 'erro', component: ErroComponent },
+  { path: '**', redirectTo: '/erro'}
 ];
 
 @NgModule({
