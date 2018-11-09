@@ -46,7 +46,7 @@
     <h4 class="list-group-item-heading">
       Status
     </h4>
-    <p class="list-group-item-text">
+    <p class="list-group-item-text alert" [ngClass]="{'alert-success':pessoa.status, 'alert-danger': !pessoa.status}">
       {{pessoa.status ? "Ativo" : "Inativo"}}
     </p>
   </div>
