@@ -1,38 +1,53 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form [formGroup]="form">
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="nome">
+          <label for="nome" class="required">
             Nome
           </label>
-          <input type="text" name="nome" id="nome" class="form-control" [(ngModel)]="novaPessoa.nome" required />
+          <input type="text" formControlName="nome" name="nome" id="nome" class="form-control" required placeholder="Fulano de Tal" />
+          <div class="alert alert-danger" *ngIf="!f.nome.valid">
+            Preencha corretamente o nome (min.: 3 dígitos).
+          </div>
         </div>
         <div class="col-sm-5 form-group">
-          <label for="idade">
+          <label for="idade" class="required">
             Idade
           </label>
-          <input type="number" name="idade" id="idade" class="form-control" [(ngModel)]="novaPessoa.idade" required />
+          <input type="number" formControlName="idade" name="idade" id="idade" class="form-control" required placeholder="23" />
+          <div class="alert alert-danger" *ngIf="!f.idade.valid">
+            Preencha corretamente a idade (min.: 18, máx.: 100).
+          </div>
         </div>
         <div class="col-sm-5 form-group">
-          <label for="email">
+          <label for="email" class="required">
             Email
           </label>
-          <input type="email" name="email" id="email" class="form-control" [(ngModel)]="novaPessoa.email" required />
+          <input type="email" formControlName="email" name="email" id="email" class="form-control" required placeholder="fulano@exemplo.com" />
+          <div class="alert alert-danger" *ngIf="!f.email.valid">
+            Preencha corretamente o email.
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="login">
+          <label for="login" class="required">
             Login
           </label>
-          <input type="text" name="login" id="login" class="form-control" [(ngModel)]="novaPessoa.login" required />
+          <input type="text" formControlName="login" name="login" id="login" class="form-control" required placeholder="fulano23" />
+          <div class="alert alert-danger" *ngIf="!f.login.valid">
+            Preencha corretamente o login (min.: 3 dígitos, apenas letras, números e hífen e subtraço).
+          </div>
         </div>
         <div class="col-sm-5 form-group">
-          <label for="senha">
+          <label for="senha" class="required">
             Senha
           </label>
-          <input type="password" name="senha" id="senha" class="form-control" [(ngModel)]="novaPessoa.senha" required />
+          <input type="password" formControlName="senha" name="senha" id="senha" class="form-control" required placeholder="senha" />
+          <div class="alert alert-danger" *ngIf="!f.senha.valid">
+            Preencha corretamente a senha (min.: 6 dígitos).
+          </div>
         </div>
         <div class="col-sm-5 form-group">
           <label for="status">
@@ -42,13 +57,13 @@
       </div>
       <div class="row">
         <div class="col-sm-5 form-group">
-          <input type="checkbox" class="form-check-input" id="status" name="status" [value]="1" [(ngModel)]="novaPessoa.status">
+          <input type="checkbox" formControlName="status" class="form-check-input" id="status" name="status">
           <label class="form-check-label" for="status">&emsp;Ativo</label>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="button" (click)="onAdicionarPessoa()">Adicionar pessoa</button>
+          <button class="btn btn-success" type="button" (click)="onAdicionarPessoa()" [disabled]="!form.valid">Adicionar pessoa</button>
         </div>
       </div>
     </form>
