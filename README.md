@@ -17,13 +17,14 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 
 ## Tecnologias
 - Angular CLI 7.0.4
-- Bootstrap 4.1.3
+- Bootstrap 3.3.7
 - Node.js 10.13
 
 ## Como executar
 
-Exevute `ng serve` para executar a versão de desenvolvimento. Depois acesse `http://localhost:4200/`.
+Execute `ng serve` para executar a versão de desenvolvimento. Depois acesse `http://localhost:4200/`.
 
+Para executar o servidor de endpoints de API, em um outro terminal na mesma pasta execute `json-server --watch db.json`. A API poderá ser acessada via `http://localhost:3000/`.
 ## Como compilar/construir
 
 Execute `ng build` para buildar o projeto. Os arquivos serão armazenados do diretório `dist/`. Use a flag `--prod` para versão de produção.

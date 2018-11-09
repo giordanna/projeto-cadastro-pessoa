@@ -1,0 +1,22 @@
+{
+  "pessoas": [
+    {
+      "id": 1,
+      "nome": "Nome 1",
+      "email": "nome1@email.com",
+      "idade": 25,
+      "login": "nome1",
+      "senha": "123qwe",
+      "status": false
+    },
+    {
+      "id": 2,
+      "nome": "Nome 2",
+      "email": "nome2@email.com",
+      "idade": 45,
+      "login": "nome2",
+      "senha": "123qwe",
+      "status": true
+    }
+  ]
+}
