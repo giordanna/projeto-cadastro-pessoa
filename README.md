@@ -9,7 +9,7 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 - Construir a estrutura do projeto utilizando o npm (gerenciador de pacotes do Node.js);
 - Criar uma pagina de cadastro de Pessoa com os seguintes campos: ID, Nome, Email, Idade, Login, Senha e Status (ativo/inativo);
 - Criar uma listagem dos usuários cadastrados, através de uma GRID;
-- Criar a rota linkando uma página a outra (Adicinar Pessoa e Listar Pessoa);
+- Criar a rota linkando uma página a outra (Adicionar Pessoa e Listar Pessoa);
 - Implementar o consumo da API disponibilizadas, através dos dois endpoints:
 	- API de Listagem
 	- API de Cadastro
@@ -28,6 +28,9 @@ Para executar o servidor de endpoints de API, em um outro terminal na mesma past
 ## Como compilar/construir
 
 Execute `ng build` para buildar o projeto. Os arquivos serão armazenados do diretório `dist/`. Use a flag `--prod` para versão de produção.
+
+## TODOs
+- Paginação da lista de pessoas.
 
 ## Dúvidas
 Caso há alguma dúvida em relação a este repositório, envie para gior.grs@gmail.com.

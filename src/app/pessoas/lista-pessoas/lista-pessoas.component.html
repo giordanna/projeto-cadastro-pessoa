@@ -1,7 +1,10 @@
 <div class="row">
   <h3>Pessoas cadastradas</h3>
   <div class="col-xs-12 form-group">
-    <input type="text"(keyup)="filtrarPessoas()" [(ngModel)]="query" class="form-control" required placeholder="Filtrar pelo nome...." />
+    <input type="text"
+           (keyup)="filtrarPessoas()"
+           [(ngModel)]="query" class="form-control"
+           placeholder="Filtrar pelo nome..." />
   </div>
 </div>
 <div class="row">
