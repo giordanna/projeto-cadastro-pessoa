@@ -7,8 +7,10 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./lista-pessoas.component.css']
 })
 export class ListaPessoasComponent implements OnInit {
-
+  query = '';
   pessoas: PessoaModule[] = [];
+  pessoasVisiveis: PessoaModule[] = [];
+
   constructor(public api: ApiService) { }
 
   ngOnInit() {
@@ -18,7 +20,19 @@ export class ListaPessoasComponent implements OnInit {
   getPessoas() {
     this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
       this.pessoas = data;
+      this.pessoasVisiveis = this.pessoas;
     });
+  }
+
+  filtrarPessoas() {
+    /* consultado: https://stackoverflow.com/questions/40678206/angular-2-filter-search-list */
+    if (this.query === '') {
+      this.pessoasVisiveis = this.pessoas;
+    } else {
+      this.pessoasVisiveis = Object.assign([], this.pessoas).filter(
+        pessoa => pessoa.nome.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+      );
+    }
   }
 
 }

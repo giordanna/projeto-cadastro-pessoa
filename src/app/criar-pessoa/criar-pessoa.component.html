@@ -1,5 +1,11 @@
-<div class="row" *ngIf="loginOuEmailExistente">
+<div class="row">
   <div class="col-xs-12">
+    <h3>Cadastrar pessoa</h3>
+    <p>Cadastre uma pessoa para ser listada na aba de "Lista de pessoas".</p>
+  </div>
+</div>
+<div class="row" *ngIf="loginOuEmailExistente">
+  <div class="col-md-7">
     <div class="alert alert-danger">
       <strong>Não foi possível registrar!</strong> Login ou email já foram cadastrados!
     </div>

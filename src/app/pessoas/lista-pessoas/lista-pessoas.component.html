@@ -1,8 +1,13 @@
 <div class="row">
+  <h3>Pessoas cadastradas</h3>
+  <div class="col-xs-12 form-group">
+    <input type="text"(keyup)="filtrarPessoas()" [(ngModel)]="query" class="form-control" required placeholder="Filtrar pelo nome...." />
+  </div>
+</div>
+<div class="row">
   <div class="col-xs-12">
-    <h3>Pessoas cadastradas</h3>
     <a class="col-sm-6 link-sem-estilo" routerLink="/lista/{{ pessoa.id }}"
-         *ngFor="let pessoa of pessoas">
+       *ngFor="let pessoa of pessoasVisiveis">
       <div class="panel panel-default">
         <div class="panel-heading">
           {{ pessoa.nome }}
@@ -12,4 +17,5 @@
         </div>
       </div>
     </a>
+  </div>
 </div>

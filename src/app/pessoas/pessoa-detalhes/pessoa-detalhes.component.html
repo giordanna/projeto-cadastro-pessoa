@@ -52,12 +52,16 @@
       </button>
     </p>
     <ng-template #mostrarSenha>
-      <p class="list-group-item-text">
-        {{pessoa.senha}}
-        <button class="btn btn-warning" type="button" (click)="senhaInvisivel = true">
-          Esconder senha
-        </button>
-      </p>
+      <div class="list-group-item-text">
+        <p>
+          <button class="btn btn-warning" type="button" (click)="senhaInvisivel = true">
+            Esconder senha
+          </button>
+        </p>
+        <p>
+          {{pessoa.senha}}
+        </p>
+      </div>
     </ng-template>
   </div>
   <div class="list-group-item">
