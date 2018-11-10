@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { PessoaModule } from '../../shared/pessoa.module';
 import { ApiService } from '../../api.service';
+import {DataService} from '../../shared/data.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-lista-pessoas',
   templateUrl: './lista-pessoas.component.html',
@@ -11,7 +13,7 @@ export class ListaPessoasComponent implements OnInit {
   pessoas: PessoaModule[] = [];
   pessoasVisiveis: PessoaModule[] = [];
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.getPessoas();
@@ -21,6 +23,9 @@ export class ListaPessoasComponent implements OnInit {
     this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
       this.pessoas = data;
       this.pessoasVisiveis = this.pessoas;
+    }, (err) => {
+      this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
+      this.router.navigate(['/erro']);
     });
   }
 

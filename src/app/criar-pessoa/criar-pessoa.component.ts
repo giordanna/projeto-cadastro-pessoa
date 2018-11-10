@@ -3,7 +3,7 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {PessoaModule} from '../shared/pessoa.module';
-import {forEach} from '../../../node_modules/@angular/router/src/utils/collection';
+import {DataService} from '../shared/data.service';
 
 @Component({
   selector: 'app-criar-pessoa',
@@ -15,7 +15,7 @@ export class CriarPessoaComponent implements OnInit {
   form: FormGroup;
   loginOuEmailExistente = false;
 
-  constructor(public api: ApiService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private data: DataService, public api: ApiService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,6 +30,13 @@ export class CriarPessoaComponent implements OnInit {
       ],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       status: ['']
+    });
+
+    // testar conexão
+    this.api.getAllPessoas().subscribe(() => {
+    }, (err) => {
+      this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
+      this.router.navigate(['/erro']);
     });
   }
 
@@ -46,13 +53,16 @@ export class CriarPessoaComponent implements OnInit {
 
       if (!this.loginOuEmailExistente) {
         this.api.createPessoa(this.form.value).subscribe(() => {
-          this.router.navigate(['/lista'], {queryParams: {add: true}});
+          this.data.add = true;
+          this.router.navigate(['/lista']);
         }, (err) => {
-          console.log(err);
+          this.data.storage = 'Erro: Não foi possível adicionar pessoa no banco de dados.';
+          this.router.navigate(['/erro']);
         });
       }
     }, (err) => {
-      console.log(err);
+      this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
+      this.router.navigate(['/erro']);
     });
   }
 

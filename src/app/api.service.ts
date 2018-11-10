@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import {PessoaModule} from './shared/pessoa.module';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
@@ -25,15 +25,6 @@ export class ApiService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      // return of(result as T);
       return of(error as T);
     };
   }
@@ -44,14 +35,14 @@ export class ApiService {
   }
 
   // API: GET /pessoas
-  public getAllPessoas(): Observable<PessoaModule[]> {
+  public getAllPessoas() {
     // will use this.http.get()
     return this.http.get(API_URL + '/pessoas').pipe(
       map(this.extrairDados));
   }
 
   // API: POST /pessoas
-  public createPessoa(pessoa: {}) {
+  public createPessoa(pessoa) {
     // will use this.http.post()
     return this.http.post<any>(API_URL + '/pessoas', JSON.stringify(pessoa), httpOptions).pipe(
       catchError(this.handleError<any>('createPessoa'))
@@ -59,7 +50,7 @@ export class ApiService {
   }
 
   // API: GET /pessoas/:id
-  public getPessoaById(pessoaId: number): Observable<PessoaModule> {
+  public getPessoaById(pessoaId: number) {
     // will use this.http.get()
       return this.http.get(API_URL + '/pessoas/' + pessoaId).pipe(
         map(this.extrairDados),
