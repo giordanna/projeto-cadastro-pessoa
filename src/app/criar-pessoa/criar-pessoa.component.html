@@ -1,3 +1,10 @@
+<div class="row" *ngIf="loginOuEmailExistente">
+  <div class="col-xs-12">
+    <div class="alert alert-danger">
+      <strong>Não foi possível registrar!</strong> Login ou email já foram cadastrados!
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-xs-12">
     <form [formGroup]="form">

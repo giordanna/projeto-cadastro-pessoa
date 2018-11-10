@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {PessoaModule} from '../shared/pessoa.module';
+import {forEach} from '../../../node_modules/@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-criar-pessoa',
@@ -11,6 +13,7 @@ import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 export class CriarPessoaComponent implements OnInit {
   /* consultado: https://scotch.io/tutorials/angular-2-form-validation */
   form: FormGroup;
+  loginOuEmailExistente = false;
 
   constructor(public api: ApiService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -33,8 +36,21 @@ export class CriarPessoaComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onAdicionarPessoa() {
-    this.api.createPessoa(this.form.value).subscribe((result) => {
-      this.router.navigate(['/lista'], { queryParams: { add: true } });
+    this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
+      const pessoasExistentes = data;
+
+      this.loginOuEmailExistente = pessoasExistentes.some((pessoaExistente) => {
+        return pessoaExistente.login === this.f.login.value ||
+          pessoaExistente.email === this.f.email.value;
+      });
+
+      if (!this.loginOuEmailExistente) {
+        this.api.createPessoa(this.form.value).subscribe(() => {
+          this.router.navigate(['/lista'], {queryParams: {add: true}});
+        }, (err) => {
+          console.log(err);
+        });
+      }
     }, (err) => {
       console.log(err);
     });

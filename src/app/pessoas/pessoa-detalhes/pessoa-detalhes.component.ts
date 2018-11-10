@@ -10,6 +10,7 @@ import {ApiService} from '../../api.service';
 })
 export class PessoaDetalhesComponent implements OnInit {
   pessoa: PessoaModule = null;
+  senhaInvisivel = true;
 
   constructor( public api: ApiService, private route: ActivatedRoute, private router: Router) {
   }

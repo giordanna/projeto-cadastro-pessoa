@@ -44,6 +44,24 @@
   </div>
   <div class="list-group-item">
     <h4 class="list-group-item-heading">
+      Senha
+    </h4>
+    <p class="list-group-item-text" *ngIf="senhaInvisivel; else mostrarSenha">
+      <button class="btn btn-danger" type="button" (click)="senhaInvisivel = false">
+        Mostrar senha
+      </button>
+    </p>
+    <ng-template #mostrarSenha>
+      <p class="list-group-item-text">
+        {{pessoa.senha}}
+        <button class="btn btn-warning" type="button" (click)="senhaInvisivel = true">
+          Esconder senha
+        </button>
+      </p>
+    </ng-template>
+  </div>
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">
       Status
     </h4>
     <p class="list-group-item-text alert" [ngClass]="{'alert-success':pessoa.status, 'alert-danger': !pessoa.status}">
