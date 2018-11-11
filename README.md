@@ -18,9 +18,15 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 - Criar um design básico para páginas (pode ser utilizado o bibliotecas/frameworks como bootstrap ou material-UI design disponíveis no repositório do npm)
 
 ## Tecnologias
+
 - Angular CLI 7.0.4
 - Bootstrap 3.3.7
 - Node.js 10.13
+
+## Como instalar
+
+- Baixe ou clone este repositório usando `git clone https://github.com/giordanna/projeto-cadastro-pessoa.git`;
+- Dentro do diretório, instale as dependências usando `npm install`.
 
 ## Como executar
 
@@ -29,7 +35,7 @@ Execute `ng serve` para executar a versão de desenvolvimento. Depois acesse `ht
 Para executar o servidor de endpoints de API, em um outro terminal na mesma pasta execute `json-server --watch db.json`. A API poderá ser acessada via `http://localhost:3000/`.
 ## Como compilar/construir
 
-Execute `ng build` para buildar o projeto. Os arquivos serão armazenados do diretório `dist/`.
+Execute `ng build` para buildar o projeto. Para buildar a versão de produção adicione a flag `--prod`. Os arquivos serão armazenados do diretório `dist`.
 
 ## TODOs
 - Paginação da lista de pessoas.
