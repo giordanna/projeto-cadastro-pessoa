@@ -31,14 +31,13 @@ export class PessoaDetalhesComponent implements OnInit {
   }
 
   getPessoaDetalhes(id: number) {
-    this.api.getPessoaById(id).subscribe((data) => {
-      if (data['status'] !== 404) {
-        this.pessoa = data;
-      } else {
-        this.data.storage = 'Erro: ID não existe no banco de dados.';
-        this.router.navigate(['/erro']);
-      }
-    });
+    const data = this.api.getPessoaById(id);
+    if (data) {
+      this.pessoa = data;
+    } else {
+      this.data.storage = 'Erro: ID não existe no banco de dados.';
+      this.router.navigate(['/erro']);
+    }
   }
 
 }

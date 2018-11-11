@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
-import {PessoaModule} from '../shared/pessoa.module';
 import {DataService} from '../shared/data.service';
 
 @Component({
@@ -29,41 +28,29 @@ export class CriarPessoaComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$')]
       ],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      status: ['']
+      status: [false]
     });
 
-    // testar conexão
-    this.api.getAllPessoas().subscribe(() => {
-    }, (err) => {
-      this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
-      this.router.navigate(['/erro']);
-    });
   }
 
   get f() { return this.form.controls; }
 
   onAdicionarPessoa() {
-    this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
-      const pessoasExistentes = data;
+      const pessoasExistentes = this.api.getAllPessoas();
 
-      this.loginOuEmailExistente = pessoasExistentes.some((pessoaExistente) => {
-        return pessoaExistente.login === this.f.login.value ||
-          pessoaExistente.email === this.f.email.value;
-      });
-
-      if (!this.loginOuEmailExistente) {
-        this.api.createPessoa(this.form.value).subscribe(() => {
-          this.data.add = true;
-          this.router.navigate(['/lista']);
-        }, (err) => {
-          this.data.storage = 'Erro: Não foi possível adicionar pessoa no banco de dados.';
-          this.router.navigate(['/erro']);
+      if (pessoasExistentes) {
+        this.loginOuEmailExistente = pessoasExistentes.some((pessoaExistente) => {
+          return pessoaExistente.login === this.f.login.value ||
+            pessoaExistente.email === this.f.email.value;
         });
       }
-    }, (err) => {
-      this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
-      this.router.navigate(['/erro']);
-    });
+
+      if (!this.loginOuEmailExistente) {
+        this.api.createPessoa(this.form.value);
+        this.data.add = true;
+        this.router.navigate(['/lista']);
+      }
+
   }
 
 }
