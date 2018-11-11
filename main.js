@@ -34,11 +34,6 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* consultado: https://www.djamware.com/post/5b87894280aca74669894414/angular-6-httpclient-consume-restful-api-example+ */
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,58 +44,45 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
-
-
-
-var API_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl;
-var httpOptions = {
-    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-        'Content-Type': 'application/json'
-    })
-};
 var ApiService = /** @class */ (function () {
-    function ApiService(http) {
-        this.http = http;
+    function ApiService() {
     }
-    ApiService.prototype.handleError = function (operation, result) {
-        if (operation === void 0) { operation = 'operation'; }
-        return function (error) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(error);
-        };
-    };
-    ApiService.prototype.extrairDados = function (res) {
-        var body = res;
-        return body || {};
-    };
-    // API: GET /pessoas
     ApiService.prototype.getAllPessoas = function () {
-        // will use this.http.get()
-        return this.http.get(API_URL + '/pessoas').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extrairDados));
+        try {
+            return JSON.parse(localStorage.getItem('pessoas')).map(function (pessoa) { return pessoa; });
+        }
+        catch (e) {
+            return null;
+        }
     };
-    // API: POST /pessoas
     ApiService.prototype.createPessoa = function (pessoa) {
-        // will use this.http.post()
-        return this.http.post(API_URL + '/pessoas', JSON.stringify(pessoa), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('createPessoa')));
+        var pessoas;
+        try {
+            pessoas = JSON.parse(localStorage.getItem('pessoas'));
+        }
+        catch (e) {
+            pessoas = [];
+        }
+        // evita problema do json fazer o parse, mas ser null
+        pessoas = pessoas ? pessoas : [];
+        pessoa.id = pessoas.length + 1;
+        pessoas.push(pessoa);
+        localStorage.setItem('pessoas', JSON.stringify(pessoas));
     };
-    // API: GET /pessoas/:id
     ApiService.prototype.getPessoaById = function (pessoaId) {
-        // will use this.http.get()
-        return this.http.get(API_URL + '/pessoas/' + pessoaId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extrairDados), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('getPessoaById')));
-    };
-    // API: PUT /pessoas/:id
-    ApiService.prototype.updatePessoa = function (pessoa) {
-        // will use this.http.put()
-    };
-    // DELETE /pessoas/:id
-    ApiService.prototype.deletePessoaById = function (pessoaId) {
-        // will use this.http.delete()
+        try {
+            var pessoas = JSON.parse(localStorage.getItem('pessoas'));
+            return pessoas.filter(function (p) { return (p.id === pessoaId); }).map(function (pessoa) { return pessoa; })[0];
+        }
+        catch (e) {
+            return null;
+        }
     };
     ApiService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        __metadata("design:paramtypes", [])
     ], ApiService);
     return ApiService;
 }());
@@ -236,17 +218,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
-/* harmony import */ var _pessoas_pessoas_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pessoas/pessoas.component */ "./src/app/pessoas/pessoas.component.ts");
-/* harmony import */ var _pessoas_lista_pessoas_lista_pessoas_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pessoas/lista-pessoas/lista-pessoas.component */ "./src/app/pessoas/lista-pessoas/lista-pessoas.component.ts");
-/* harmony import */ var _pessoas_pessoa_detalhes_pessoa_detalhes_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pessoas/pessoa-detalhes/pessoa-detalhes.component */ "./src/app/pessoas/pessoa-detalhes/pessoa-detalhes.component.ts");
-/* harmony import */ var _criar_pessoa_criar_pessoa_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./criar-pessoa/criar-pessoa.component */ "./src/app/criar-pessoa/criar-pessoa.component.ts");
-/* harmony import */ var _erro_erro_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./erro/erro.component */ "./src/app/erro/erro.component.ts");
-/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./api.service */ "./src/app/api.service.ts");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/data.service */ "./src/app/shared/data.service.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _pessoas_pessoas_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pessoas/pessoas.component */ "./src/app/pessoas/pessoas.component.ts");
+/* harmony import */ var _pessoas_lista_pessoas_lista_pessoas_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pessoas/lista-pessoas/lista-pessoas.component */ "./src/app/pessoas/lista-pessoas/lista-pessoas.component.ts");
+/* harmony import */ var _pessoas_pessoa_detalhes_pessoa_detalhes_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pessoas/pessoa-detalhes/pessoa-detalhes.component */ "./src/app/pessoas/pessoa-detalhes/pessoa-detalhes.component.ts");
+/* harmony import */ var _criar_pessoa_criar_pessoa_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./criar-pessoa/criar-pessoa.component */ "./src/app/criar-pessoa/criar-pessoa.component.ts");
+/* harmony import */ var _erro_erro_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./erro/erro.component */ "./src/app/erro/erro.component.ts");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./api.service */ "./src/app/api.service.ts");
+/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/data.service */ "./src/app/shared/data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -266,30 +247,28 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _header_header_component__WEBPACK_IMPORTED_MODULE_6__["HeaderComponent"],
-                _pessoas_pessoas_component__WEBPACK_IMPORTED_MODULE_7__["PessoasComponent"],
-                _pessoas_lista_pessoas_lista_pessoas_component__WEBPACK_IMPORTED_MODULE_8__["ListaPessoasComponent"],
-                _pessoas_pessoa_detalhes_pessoa_detalhes_component__WEBPACK_IMPORTED_MODULE_9__["PessoaDetalhesComponent"],
-                _criar_pessoa_criar_pessoa_component__WEBPACK_IMPORTED_MODULE_10__["CriarPessoaComponent"],
-                _erro_erro_component__WEBPACK_IMPORTED_MODULE_11__["ErroComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _header_header_component__WEBPACK_IMPORTED_MODULE_5__["HeaderComponent"],
+                _pessoas_pessoas_component__WEBPACK_IMPORTED_MODULE_6__["PessoasComponent"],
+                _pessoas_lista_pessoas_lista_pessoas_component__WEBPACK_IMPORTED_MODULE_7__["ListaPessoasComponent"],
+                _pessoas_pessoa_detalhes_pessoa_detalhes_component__WEBPACK_IMPORTED_MODULE_8__["PessoaDetalhesComponent"],
+                _criar_pessoa_criar_pessoa_component__WEBPACK_IMPORTED_MODULE_9__["CriarPessoaComponent"],
+                _erro_erro_component__WEBPACK_IMPORTED_MODULE_10__["ErroComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"]
             ],
-            providers: [_api_service__WEBPACK_IMPORTED_MODULE_12__["ApiService"], _shared_data_service__WEBPACK_IMPORTED_MODULE_13__["DataService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            providers: [_api_service__WEBPACK_IMPORTED_MODULE_11__["ApiService"], _shared_data_service__WEBPACK_IMPORTED_MODULE_12__["DataService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -359,7 +338,6 @@ var CriarPessoaComponent = /** @class */ (function () {
         this.loginOuEmailExistente = false;
     }
     CriarPessoaComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.form = this.formBuilder.group({
             nome: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3)]],
             idade: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].min(18), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].max(100)]],
@@ -372,13 +350,7 @@ var CriarPessoaComponent = /** @class */ (function () {
                 ]
             ],
             senha: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(6)]],
-            status: ['']
-        });
-        // testar conexão
-        this.api.getAllPessoas().subscribe(function () {
-        }, function (err) {
-            _this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
-            _this.router.navigate(['/erro']);
+            status: [false]
         });
     };
     Object.defineProperty(CriarPessoaComponent.prototype, "f", {
@@ -388,25 +360,18 @@ var CriarPessoaComponent = /** @class */ (function () {
     });
     CriarPessoaComponent.prototype.onAdicionarPessoa = function () {
         var _this = this;
-        this.api.getAllPessoas().subscribe(function (data) {
-            var pessoasExistentes = data;
-            _this.loginOuEmailExistente = pessoasExistentes.some(function (pessoaExistente) {
+        var pessoasExistentes = this.api.getAllPessoas();
+        if (pessoasExistentes) {
+            this.loginOuEmailExistente = pessoasExistentes.some(function (pessoaExistente) {
                 return pessoaExistente.login === _this.f.login.value ||
                     pessoaExistente.email === _this.f.email.value;
             });
-            if (!_this.loginOuEmailExistente) {
-                _this.api.createPessoa(_this.form.value).subscribe(function () {
-                    _this.data.add = true;
-                    _this.router.navigate(['/lista']);
-                }, function (err) {
-                    _this.data.storage = 'Erro: Não foi possível adicionar pessoa no banco de dados.';
-                    _this.router.navigate(['/erro']);
-                });
-            }
-        }, function (err) {
-            _this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
-            _this.router.navigate(['/erro']);
-        });
+        }
+        if (!this.loginOuEmailExistente) {
+            this.api.createPessoa(this.form.value);
+            this.data.add = true;
+            this.router.navigate(['/lista']);
+        }
     };
     CriarPessoaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -591,8 +556,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaPessoasComponent", function() { return ListaPessoasComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api.service */ "./src/app/api.service.ts");
-/* harmony import */ var _shared_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data.service */ "./src/app/shared/data.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -604,13 +567,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
-
 var ListaPessoasComponent = /** @class */ (function () {
-    function ListaPessoasComponent(api, data, router) {
+    function ListaPessoasComponent(api) {
         this.api = api;
-        this.data = data;
-        this.router = router;
         this.query = '';
         this.pessoas = [];
         this.pessoasVisiveis = [];
@@ -619,14 +578,8 @@ var ListaPessoasComponent = /** @class */ (function () {
         this.getPessoas();
     };
     ListaPessoasComponent.prototype.getPessoas = function () {
-        var _this = this;
-        this.api.getAllPessoas().subscribe(function (data) {
-            _this.pessoas = data;
-            _this.pessoasVisiveis = _this.pessoas;
-        }, function (err) {
-            _this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
-            _this.router.navigate(['/erro']);
-        });
+        this.pessoas = this.api.getAllPessoas();
+        this.pessoasVisiveis = this.pessoas;
     };
     ListaPessoasComponent.prototype.filtrarPessoas = function () {
         var _this = this;
@@ -644,7 +597,7 @@ var ListaPessoasComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./lista-pessoas.component.html */ "./src/app/pessoas/lista-pessoas/lista-pessoas.component.html"),
             styles: [__webpack_require__(/*! ./lista-pessoas.component.css */ "./src/app/pessoas/lista-pessoas/lista-pessoas.component.css")]
         }),
-        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"], _shared_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        __metadata("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
     ], ListaPessoasComponent);
     return ListaPessoasComponent;
 }());
@@ -727,16 +680,14 @@ var PessoaDetalhesComponent = /** @class */ (function () {
         });
     };
     PessoaDetalhesComponent.prototype.getPessoaDetalhes = function (id) {
-        var _this = this;
-        this.api.getPessoaById(id).subscribe(function (data) {
-            if (data['status'] !== 404) {
-                _this.pessoa = data;
-            }
-            else {
-                _this.data.storage = 'Erro: ID não existe no banco de dados.';
-                _this.router.navigate(['/erro']);
-            }
-        });
+        var data = this.api.getPessoaById(id);
+        if (data) {
+            this.pessoa = data;
+        }
+        else {
+            this.data.storage = 'Erro: ID não existe no banco de dados.';
+            this.router.navigate(['/erro']);
+        }
     };
     PessoaDetalhesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -875,8 +826,7 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false,
-    apiUrl: 'http://localhost:3000'
+    production: false
 };
 /*
  * For easier debugging in development mode, you can import the following file
