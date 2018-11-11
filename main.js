@@ -165,7 +165,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<app-header></app-header>\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n<a\r\n  target=\"_blank\"\r\n  rel=\"noopener noreferrer\"\r\n  href=\"https://github.com/giordanna/projeto-cadastro-pessoa\"\r\n>\r\n  <img\r\n    style=\"position: absolute; bottom: 0; left: 0; border: 0;\"\r\n    src=\"assets/github.png\"\r\n    alt=\"Fork me on GitHub\">\r\n</a>\r\n"
 
 /***/ }),
 
@@ -477,7 +477,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse\" role=\"navigation\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      <a routerLink=\"\" routerLinkActive=\"active\">Cadastro de Pessoa</a>\r\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#header-app\">\r\n        <span class=\"sr-only\">Mostra/Esconde a navegação</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"collapse navbar-collapse\" id=\"header-app\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li><a routerLink=\"/criar\" routerLinkActive=\"active\">Criar pessoa</a></li>\r\n        <li><a routerLink=\"/lista\" routerLinkActive=\"active\">Lista de pessoas</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-inverse\" role=\"navigation\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      <a routerLink=\"\" routerLinkActive=\"active\" class=\"navbar-brand\">Cadastro de Pessoa</a>\r\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#header-app\">\r\n        <span class=\"sr-only\">Mostra/Esconde a navegação</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"collapse navbar-collapse\" id=\"header-app\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li><a routerLink=\"/criar\" routerLinkActive=\"active\">Criar pessoa</a></li>\r\n        <li><a routerLink=\"/lista\" routerLinkActive=\"active\">Lista de pessoas</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
