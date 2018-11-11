@@ -29,7 +29,7 @@ export class CriarPessoaComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$')]
       ],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      status: ['']
+      status: [false]
     });
 
     // testar conexão

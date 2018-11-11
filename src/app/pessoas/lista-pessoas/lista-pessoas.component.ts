@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { PessoaModule } from '../../shared/pessoa.module';
 import { ApiService } from '../../api.service';
 import {DataService} from '../../shared/data.service';
@@ -23,7 +23,7 @@ export class ListaPessoasComponent implements OnInit {
     this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
       this.pessoas = data;
       this.pessoasVisiveis = this.pessoas;
-    }, (err) => {
+    }, () => {
       this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
       this.router.navigate(['/erro']);
     });

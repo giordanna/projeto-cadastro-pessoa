@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../shared/data.service';
 @Component({
   selector: 'app-pessoas',
@@ -8,7 +7,7 @@ import {DataService} from '../shared/data.service';
 })
 export class PessoasComponent implements OnInit {
   pessoaCadastrada = false;
-  constructor(private data: DataService, private route: ActivatedRoute) { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
     this.pessoaCadastrada = this.data.add;

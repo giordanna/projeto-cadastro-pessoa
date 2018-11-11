@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CriarPessoaComponent } from './criar-pessoa/criar-pessoa.component';
 import { PessoasComponent } from './pessoas/pessoas.component';
 import { ErroComponent } from './erro/erro.component';
-import {PessoaDetalhesComponent} from './pessoas/pessoa-detalhes/pessoa-detalhes.component';
 
 const routes: Routes = [
   { path: 'criar', component: CriarPessoaComponent },

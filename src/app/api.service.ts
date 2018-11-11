@@ -2,10 +2,9 @@
 
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import {PessoaModule} from './shared/pessoa.module';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
 const httpOptions = {
@@ -36,14 +35,12 @@ export class ApiService {
 
   // API: GET /pessoas
   public getAllPessoas() {
-    // will use this.http.get()
     return this.http.get(API_URL + '/pessoas').pipe(
       map(this.extrairDados));
   }
 
   // API: POST /pessoas
   public createPessoa(pessoa) {
-    // will use this.http.post()
     return this.http.post<any>(API_URL + '/pessoas', JSON.stringify(pessoa), httpOptions).pipe(
       catchError(this.handleError<any>('createPessoa'))
     );
@@ -51,20 +48,9 @@ export class ApiService {
 
   // API: GET /pessoas/:id
   public getPessoaById(pessoaId: number) {
-    // will use this.http.get()
       return this.http.get(API_URL + '/pessoas/' + pessoaId).pipe(
         map(this.extrairDados),
         catchError(this.handleError<any>('getPessoaById'))
       );
-  }
-
-  // API: PUT /pessoas/:id
-  public updatePessoa(pessoa: PessoaModule) {
-    // will use this.http.put()
-  }
-
-  // DELETE /pessoas/:id
-  public deletePessoaById(pessoaId: number) {
-    // will use this.http.delete()
   }
 }
