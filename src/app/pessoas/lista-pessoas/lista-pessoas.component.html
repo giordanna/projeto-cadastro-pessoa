@@ -24,21 +24,21 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination pagination-sm">
       <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="onMudarPaginas(1)">Primeira pág.</a>
+        <a (click)="onMudarPaginas(1)">&laquo;</a>
       </li>
       <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="onMudarPaginas(pager.currentPage - 1)">&laquo;</a>
+        <a (click)="onMudarPaginas(pager.currentPage - 1)">&lt;</a>
       </li>
       <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
         <a (click)="onMudarPaginas(page)">{{page}}</a>
       </li>
       <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="onMudarPaginas(pager.currentPage + 1)">&raquo;</a>
+        <a (click)="onMudarPaginas(pager.currentPage + 1)">&gt;</a>
       </li>
       <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="onMudarPaginas(pager.totalPages)">Última pág.</a>
+        <a (click)="onMudarPaginas(pager.totalPages)">&raquo;</a>
       </li>
     </ul>
   </div>
