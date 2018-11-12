@@ -1,6 +1,6 @@
 # Projeto Cadastro Pessoa
 
-Este projeto foi criado com o [Angular CLI](https://github.com/angular/angular-cli) versão 7.0.4.
+Este projeto foi criado com o [Angular CLI](https://github.com/angular/angular-cli) versão 7.0.5.
 
 Você pode acessar ele pelo [Github Pages](https://giordanna.github.io/projeto-cadastro-pessoa/). Nele, ao invés de se usar uma API de mockup, utiliza-se localStorage.
 
@@ -19,7 +19,7 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 
 ## Tecnologias
 
-- Angular CLI 7.0.4
+- Angular CLI 7.0.5
 - Bootstrap 3.3.7
 - Node.js 10.13
 - JSON Server 0.14.0
