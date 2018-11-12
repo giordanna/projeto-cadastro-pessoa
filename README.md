@@ -32,13 +32,10 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 
 Execute `ng serve` para executar a versão de desenvolvimento. Depois acesse `http://localhost:4200/`.
 
-Para executar o servidor de endpoints de API, em um outro terminal na mesma pasta execute `json-server --watch db.json`. A API poderá ser acessada via `http://localhost:3000/`.
+Para executar o servidor de endpoints de API, em um outro terminal na mesma pasta execute `run npm json-server`. A API poderá ser acessada via `http://localhost:3000/`.
 ## Como compilar/construir
 
 Execute `ng build` para buildar o projeto. Para buildar a versão de produção adicione a flag `--prod`. Os arquivos serão armazenados do diretório `dist`.
-
-## TODOs
-- Paginação da lista de pessoas.
 
 ## Dúvidas
 Caso há alguma dúvida em relação a este repositório, envie para gior.grs@gmail.com.
