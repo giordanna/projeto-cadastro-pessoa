@@ -22,6 +22,7 @@ Criar um projeto Angular 6, utilizando a abordagem SPA com as seguintes funciona
 - Angular CLI 7.0.4
 - Bootstrap 3.3.7
 - Node.js 10.13
+- JSON Server 0.14.0
 
 ## Como instalar
 
