@@ -3,6 +3,7 @@ import { PessoaModule } from '../../shared/pessoa.module';
 import { ApiService } from '../../api.service';
 import {DataService} from '../../shared/data.service';
 import {Router} from '@angular/router';
+import {PagerService} from '../../pager.service';
 @Component({
   selector: 'app-lista-pessoas',
   templateUrl: './lista-pessoas.component.html',
@@ -12,8 +13,10 @@ export class ListaPessoasComponent implements OnInit {
   query = '';
   pessoas: PessoaModule[] = [];
   pessoasVisiveis: PessoaModule[] = [];
+  pessoasPaginadas: PessoaModule[] = [];
+  pager: any = {};
 
-  constructor(public api: ApiService, private data: DataService, private router: Router) { }
+  constructor(private pagerService: PagerService, public api: ApiService, private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.getPessoas();
@@ -23,10 +26,17 @@ export class ListaPessoasComponent implements OnInit {
     this.api.getAllPessoas().subscribe((data: PessoaModule[]) => {
       this.pessoas = data;
       this.pessoasVisiveis = this.pessoas;
+      this.pessoasPaginadas = this.pessoas;
+      this.onMudarPaginas(1);
     }, () => {
       this.data.storage = 'Erro: Não foi possível acessar o banco de dados.';
       this.router.navigate(['/erro']);
     });
+  }
+
+  onMudarPaginas(pagina: number) {
+      this.pager = this.pagerService.getPager(this.pessoasVisiveis.length, pagina);
+      this.pessoasPaginadas = this.pessoasVisiveis.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
   filtrarPessoas() {
@@ -38,6 +48,7 @@ export class ListaPessoasComponent implements OnInit {
         pessoa => pessoa.nome.toLowerCase().indexOf(this.query.toLowerCase()) > -1
       );
     }
+    this.onMudarPaginas(1);
   }
 
 }

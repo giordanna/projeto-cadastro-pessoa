@@ -3,8 +3,7 @@ import {DataService} from '../shared/data.service';
 
 @Component({
   selector: 'app-erro',
-  templateUrl: './erro.component.html',
-  styleUrls: ['./erro.component.css']
+  templateUrl: './erro.component.html'
 })
 export class ErroComponent implements OnInit {
   erro = 'Erro 404: Página não encontrada.';

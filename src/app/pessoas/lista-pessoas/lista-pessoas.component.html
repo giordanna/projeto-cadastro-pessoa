@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-xs-12">
     <a class="col-sm-6 link-sem-estilo" routerLink="/lista/{{ pessoa.id }}"
-       *ngFor="let pessoa of pessoasVisiveis">
+       *ngFor="let pessoa of pessoasPaginadas">
       <div class="panel panel-default">
         <div class="panel-heading">
           {{ pessoa.nome }}
@@ -20,5 +20,26 @@
         </div>
       </div>
     </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="onMudarPaginas(1)">Primeira pág.</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="onMudarPaginas(pager.currentPage - 1)">&laquo;</a>
+      </li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="onMudarPaginas(page)">{{page}}</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="onMudarPaginas(pager.currentPage + 1)">&raquo;</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="onMudarPaginas(pager.totalPages)">Última pág.</a>
+      </li>
+    </ul>
   </div>
 </div>

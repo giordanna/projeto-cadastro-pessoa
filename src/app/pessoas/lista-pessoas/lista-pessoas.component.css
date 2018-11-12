@@ -2,3 +2,7 @@
   color: black;
   text-decoration: none;
 }
+
+.pagination li {
+  cursor: pointer;
+}

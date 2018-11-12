@@ -6,8 +6,7 @@ import {DataService} from '../../shared/data.service';
 
 @Component({
   selector: 'app-pessoa-detalhes',
-  templateUrl: './pessoa-detalhes.component.html',
-  styleUrls: ['./pessoa-detalhes.component.css']
+  templateUrl: './pessoa-detalhes.component.html'
 })
 export class PessoaDetalhesComponent implements OnInit {
   pessoa: PessoaModule = null;

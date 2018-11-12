@@ -13,6 +13,7 @@ import { ErroComponent } from './erro/erro.component';
 
 import { ApiService } from './api.service';
 import { DataService } from './shared/data.service';
+import {PagerService} from './pager.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { DataService } from './shared/data.service';
     ListaPessoasComponent,
     PessoaDetalhesComponent,
     CriarPessoaComponent,
-    ErroComponent,
+    ErroComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { DataService } from './shared/data.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService, DataService],
+  providers: [ApiService, DataService, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
