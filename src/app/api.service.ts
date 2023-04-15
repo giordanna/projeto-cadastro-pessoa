@@ -45,6 +45,14 @@ export class ApiService {
       catchError(this.handleError<any>('createPessoa'))
     );
   }
+  
+  // API: DELETE /pessoas
+  public getPessoaByIddelete(pessoaId: number){
+ // public deletePessoa(pessoaId) {
+    return this.http.delete<any>(API_URL + '/pessoas' + pessoaId, JSON.stringify(pessoa), httpOptions).pipe(
+      catchError(this.handleError<any>('deletePessoa'))
+    );
+  }
 
   // API: GET /pessoas/:id
   public getPessoaById(pessoaId: number) {
